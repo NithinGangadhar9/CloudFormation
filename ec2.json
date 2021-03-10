@@ -1,5 +1,5 @@
 {
-  "Parameters": null,
+  "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
     "MyInstance": {
       "Type": "AWS::EC2::Instance",
