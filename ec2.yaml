@@ -2,10 +2,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This is the EC2 staclk to deploy the compute platform.
 Resources: 
+  
   MyEIP: 
     Properties: 
       InstanceId: MyInstance
     Type: "AWS::EC2::EIP"
+  
   MyInstance: 
     Properties: 
       AvailabilityZone: ca-central-1a
@@ -15,6 +17,7 @@ Resources:
         - ServerSecurityGroup
         - SSHSecurityGroup
     Type: "AWS::EC2::Instance"
+  
   SSHSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
@@ -25,6 +28,7 @@ Resources:
           IpProtocol: TCP
           ToPort: 1200
     Type: "AWS::EC2::SecurityGroup"
+  
   ServerSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
