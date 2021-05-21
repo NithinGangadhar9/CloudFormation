@@ -1,36 +1,36 @@
-Parameters:
+--- 
+Parameters: ~
 Resources: 
- MyInstance: 
-  Type: AWS::EC2::Instance
-  Properties: 
-   AvailabilityZone: ca-central-1a
-   ImageId: ami-0bf54ac1b628cf143
-   InstanceType: t2.micro
-   SecurityGroups:
-    - !Ref ServerSecurityGroup
-    - !Ref SSHSecurityGroup
-
- MyEIP:
-  Type: AWS::EC2::EIP
-  Properties:
-   InstanceId: !Ref MyInstance
-
- ServerSecurityGroup:
-  Type: AWS::EC2::SecurityGroup
-  Properties: 
-   GroupDescription: Enable Security for Server
-   SecurityGroupIngress:
-    - CidrIp: 0.0.0.0/0
-      FromPort: 22
-      IpProtocol: TCP
-      ToPort: 1100
-
- SSHSecurityGroup:
-  Type: AWS::EC2::SecurityGroup
-  Properties:
-   GroupDescription: Enable Security for Server
-   SecurityGroupIngress:
-    - CidrIp: 0.0.0.0/0 
-      FromPort: 22
-      IpProtocol: TCP
-      ToPort: 1200
+  MyEIP: 
+    Properties: 
+      InstanceId: MyInstance
+    Type: "AWS::EC2::EIP"
+  MyInstance: 
+    Properties: 
+      AvailabilityZone: ca-central-1a
+      ImageId: ami-0bf54ac1b628cf143
+      InstanceType: t2.micro
+      SecurityGroups: 
+        - ServerSecurityGroup
+        - SSHSecurityGroup
+    Type: "AWS::EC2::Instance"
+  SSHSecurityGroup: 
+    Properties: 
+      GroupDescription: "Enable Security for Server"
+      SecurityGroupIngress: 
+        - 
+          CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: TCP
+          ToPort: 1200
+    Type: "AWS::EC2::SecurityGroup"
+  ServerSecurityGroup: 
+    Properties: 
+      GroupDescription: "Enable Security for Server"
+      SecurityGroupIngress: 
+        - 
+          CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: TCP
+          ToPort: 1100
+    Type: "AWS::EC2::SecurityGroup"
