@@ -3,10 +3,6 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: This is the EC2 stack to deploy the compute platform.
 Resources: 
   
-  MyEIP: 
-    Properties: 
-      InstanceId: MyInstance
-    Type: "AWS::EC2::EIP"
   
   MyInstance: 
     Properties: 
@@ -18,6 +14,11 @@ Resources:
         - SSHSecurityGroup
     Type: "AWS::EC2::Instance"
   
+  MyEIP: 
+    Properties: 
+      InstanceId: MyInstance
+    Type: "AWS::EC2::EIP"
+
   SSHSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
