@@ -10,14 +10,14 @@ Resources:
       ImageId: ami-0687cfe4923f5f229
       InstanceType: t2.micro
       SecurityGroups: 
-        - ServerSecurityGroup
-        - SSHSecurityGroup
-    Type: AWS::EC2::Instance
+        - !Ref ServerSecurityGroup
+        - !Ref SSHSecurityGroup
+    Type: "AWS::EC2::Instance"
   
   MyEIP: 
     Properties: 
       InstanceId: MyInstance
-    Type: AWS::EC2::EIP
+    Type: "AWS::EC2::EIP"
 
   SSHSecurityGroup: 
     Properties: 
@@ -28,7 +28,7 @@ Resources:
           FromPort: 22
           IpProtocol: TCP
           ToPort: 1200
-    Type: AWS::EC2::SecurityGroup
+    Type: "AWS::EC2::SecurityGroup"
   
   ServerSecurityGroup: 
     Properties: 
@@ -39,4 +39,4 @@ Resources:
           FromPort: 22
           IpProtocol: TCP
           ToPort: 1100
-    Type: AWS::EC2::SecurityGroup
+    Type: "AWS::EC2::SecurityGroup"
