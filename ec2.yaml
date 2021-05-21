@@ -26,7 +26,7 @@ Resources:
           CidrIp: 0.0.0.0/0
           FromPort: 22
           IpProtocol: TCP
-          ToPort: 1200
+          ToPort: 22
     Type: "AWS::EC2::SecurityGroup"
   
   ServerSecurityGroup: 
@@ -35,7 +35,7 @@ Resources:
       SecurityGroupIngress: 
         - 
           CidrIp: 0.0.0.0/0
-          FromPort: 22
+          FromPort: 80
           IpProtocol: TCP
-          ToPort: 1100
+          ToPort: 80
     Type: "AWS::EC2::SecurityGroup"
