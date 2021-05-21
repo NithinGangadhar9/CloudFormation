@@ -1,5 +1,6 @@
 --- 
-Parameters: ~
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This is the EC2 stacl to deploy the compute platform.
 Resources: 
   MyEIP: 
     Properties: 
