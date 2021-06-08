@@ -31,7 +31,7 @@ Resources:
   SSHSecurityGroup:
     Properties:
       GroupDescription: "Enable Security for Server"
-      VpcId: !Ref CoreVPC
+      #VpcId: !Ref CoreVPC
       SecurityGroupIngress:
         -
           CidrIp: 0.0.0.0/0
