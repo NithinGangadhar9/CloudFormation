@@ -24,9 +24,9 @@ Resources:
     Properties: 
       CidrBlock: 10.0.0.0/16
       InstanceTenancy: dedicated
-      Tags:
-        - Key: ServiceTier
-          Value: NonProduction
+      #Tags:
+      #  - Key: ServiceTier
+      #    Value: NonProduction
 
   SSHSecurityGroup:
     Properties:
