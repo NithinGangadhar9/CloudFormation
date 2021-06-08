@@ -23,9 +23,7 @@ Resources:
     Type: AWS::EC2::VPC
     Properties: 
       CidrBlock: 10.0.0.0/16
-      InstanceTenancy: dedicated
-      EnableDnsSupport: true
-      EnableDnsHostnames: true
+      InstanceTenancy: default
       Tags:
         - Key: ServiceTier
           Value: NonProduction
@@ -45,7 +43,7 @@ Resources:
   ServerSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
-      VpcId: !Ref CoreVPC
+      #VpcId: !Ref CoreVPC
       SecurityGroupIngress: 
         - 
           CidrIp: 0.0.0.0/0
