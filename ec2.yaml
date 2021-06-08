@@ -12,8 +12,14 @@ Resources:
         - !Ref ServerSecurityGroup
         - !Ref SSHSecurityGroup
     Type: "AWS::EC2::Instance"
+
   
-  CoreVPC:
+    MyEIP:
+    Properties:
+      InstanceId: !Ref MyInstance
+    Type: "AWS::EC2::EIP"
+
+    CoreVPC:
     Type: AWS::EC2::VPC
     Properties: 
       CidrBlock: 10.0.0.0/16
@@ -21,11 +27,6 @@ Resources:
       Tags: 
         - ServiceTier: NonProduction
         - ResourceSharing: Dedicated
-  
-    MyEIP:
-    Properties:
-      InstanceId: !Ref MyInstance
-    Type: "AWS::EC2::EIP"
 
   SSHSecurityGroup:
     Properties:
