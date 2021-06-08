@@ -2,7 +2,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This is the EC2 stack to deploy the compute platform - version1.0
 Resources: 
-  
 
   MyInstance: 
     Properties: 
@@ -14,16 +13,25 @@ Resources:
         - !Ref SSHSecurityGroup
     Type: "AWS::EC2::Instance"
   
-  MyEIP: 
+  CoreVPC:
+    Type: AWS::EC2::VPC
     Properties: 
+      CidrBlock: 10.0.0.0/16
+      InstanceTenancy: dedicated
+      Tags: 
+        - ServiceTier: NonProduction
+        - ResourceSharing: Dedicated
+  
+    MyEIP:
+    Properties:
       InstanceId: !Ref MyInstance
     Type: "AWS::EC2::EIP"
 
-  SSHSecurityGroup: 
-    Properties: 
+  SSHSecurityGroup:
+    Properties:
       GroupDescription: "Enable Security for Server"
-      SecurityGroupIngress: 
-        - 
+      SecurityGroupIngress:
+        -
           CidrIp: 0.0.0.0/0
           FromPort: 22
           IpProtocol: TCP
@@ -43,6 +51,6 @@ Resources:
 
 
 Outputs:
-  PublicIP:
+  MyInstanceIP:
     Description: EC2 public IP
     Value: !GetAtt MyInstance.PublicIp
