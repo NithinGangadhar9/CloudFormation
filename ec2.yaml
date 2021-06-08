@@ -14,12 +14,12 @@ Resources:
     Type: "AWS::EC2::Instance"
 
   
-    MyEIP:
+  MyEIP:
     Properties:
       InstanceId: !Ref MyInstance
     Type: "AWS::EC2::EIP"
 
-    CoreVPC:
+  CoreVPC:
     Type: AWS::EC2::VPC
     Properties: 
       CidrBlock: 10.0.0.0/16
