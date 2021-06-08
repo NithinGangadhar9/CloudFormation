@@ -3,6 +3,16 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: This is the EC2 stack to deploy the compute platform - version1.0
 Resources: 
   
+  InstanceType:
+    AllowedValues:
+    - t2.nano
+    - t2.micro
+    - t2.small
+    ConstraintDescription: Must be a valid EC2 instance type.
+    Default: t2.micro
+    Description: WebServer allowed EC2 instance type
+    Type: String
+
   MyInstance: 
     Properties: 
       AvailabilityZone: ca-central-1a
@@ -39,3 +49,9 @@ Resources:
           IpProtocol: TCP
           ToPort: 80
     Type: "AWS::EC2::SecurityGroup"
+
+
+Outputs:
+  PublicIP:
+    Description: EC2 public IP
+    Value: !GetAtt MyInstance.PublicIp
