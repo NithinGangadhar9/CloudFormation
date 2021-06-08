@@ -24,10 +24,14 @@ Resources:
     Properties: 
       CidrBlock: 10.0.0.0/16
       InstanceTenancy: dedicated
+      Tags:
+        - Key: ServiceTier
+          Value: NonProduction
 
   SSHSecurityGroup:
     Properties:
       GroupDescription: "Enable Security for Server"
+      VpcId: !Ref CoreVPC
       SecurityGroupIngress:
         -
           CidrIp: 0.0.0.0/0
@@ -39,6 +43,7 @@ Resources:
   ServerSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
+      VpcId: !Ref CoreVPC
       SecurityGroupIngress: 
         - 
           CidrIp: 0.0.0.0/0
