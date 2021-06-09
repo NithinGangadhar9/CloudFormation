@@ -1,24 +1,9 @@
 --- 
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This is the EC2 stack to deploy the compute platform - version1.0
-Resources: 
 
-  MyInstance: 
-    Properties: 
-      AvailabilityZone: ca-central-1a
-      ImageId: ami-0101734ab73bd9e15
-      InstanceType: t2.micro
-      SecurityGroups: 
-        - !Ref ServerSecurityGroup
-        - !Ref SSHSecurityGroup
-    Type: "AWS::EC2::Instance"
 
-  
-  MyEIP:
-    Properties:
-      InstanceId: !Ref MyInstance
-    Type: "AWS::EC2::EIP"
-
+Parameters:
   CoreVPC:
     Type: AWS::EC2::VPC
     Properties: 
@@ -28,10 +13,37 @@ Resources:
         - Key: ServiceTier
           Value: NonProduction
 
+  InstanceType:
+    Description: WebServer EC2 instance type (has default, AllowedValues)
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t1.micro
+      - t2.nano
+      - t2.micro
+      - t2.small
+    ConstraintDescription: must be a valid EC2 instance type.
+
+Resources:
+  MyInstance: 
+    Properties: 
+      AvailabilityZone: ca-central-1a
+      ImageId: ami-0101734ab73bd9e15
+      InstanceType: !Ref InstanceType
+      SecurityGroups: 
+        - !Ref ServerSecurityGroup
+        - !Ref SSHSecurityGroup
+    Type: "AWS::EC2::Instance"
+  
+  MyEIP:
+    Properties:
+      InstanceId: !Ref MyInstance
+    Type: "AWS::EC2::EIP"
+
   SSHSecurityGroup:
     Properties:
       GroupDescription: "Enable Security for Server"
-      #VpcId: !Ref CoreVPC
+      VpcId: !Ref CoreVPC
       SecurityGroupIngress:
         -
           CidrIp: 0.0.0.0/0
@@ -43,7 +55,7 @@ Resources:
   ServerSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
-      #VpcId: !Ref CoreVPC
+      VpcId: !Ref CoreVPC
       SecurityGroupIngress: 
         - 
           CidrIp: 0.0.0.0/0
@@ -51,7 +63,6 @@ Resources:
           IpProtocol: TCP
           ToPort: 80
     Type: "AWS::EC2::SecurityGroup"
-
 
 Outputs:
   MyInstanceIP:
