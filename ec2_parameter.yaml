@@ -20,6 +20,7 @@ Parameters:
 
 Resources:
   MyInstance: 
+    Type: "AWS::EC2::Instance"
     Properties: 
       AvailabilityZone: !Ref AvailabilityZone
       ImageId: !Ref ImageId
@@ -27,12 +28,11 @@ Resources:
       SecurityGroups: 
         - !Ref ServerSecurityGroup
         - !Ref SSHSecurityGroup
-    Type: "AWS::EC2::Instance"
   
   MyEIP:
+    Type: "AWS::EC2::EIP"
     Properties:
       InstanceId: !Ref MyInstance
-    Type: "AWS::EC2::EIP"
 
   CoreVPC:
     Type: AWS::EC2::VPC
