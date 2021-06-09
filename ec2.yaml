@@ -54,7 +54,7 @@ Resources:
   ServerSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
-      VpcId: !Ref CoreVPC
+      #VpcId: !Ref CoreVPC
       SecurityGroupIngress: 
         - 
           CidrIp: 10.0.2.0/24
