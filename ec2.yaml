@@ -1,8 +1,6 @@
 --- 
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This is the EC2 stack to deploy the compute platform - version1.0
-
-
 Parameters:
   CoreVPC:
     Type: AWS::EC2::VPC
