@@ -5,8 +5,8 @@ Parameters:
   CoreVPC:
     Type: AWS::EC2::VPC
     Description: VPC to operate 
-    #Properties: 
-    #  CidrBlock: 10.0.0.0/16
+    Properties: 
+      CidrBlock: 10.0.0.0/16
     #  InstanceTenancy: default
     #  Tags:
     #    - Key: ServiceTier
