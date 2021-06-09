@@ -45,7 +45,7 @@ Resources:
       #VpcId: !Ref CoreVPC
       SecurityGroupIngress:
         -
-          CidrIp: 0.0.0.0/0
+          CidrIp: 0.0.0.0/16
           FromPort: 22
           IpProtocol: TCP
           ToPort: 22
@@ -57,7 +57,7 @@ Resources:
       VpcId: !Ref CoreVPC
       SecurityGroupIngress: 
         - 
-          CidrIp: 0.0.0.0/0
+          CidrIp: 0.0.0.0/16
           FromPort: 80
           IpProtocol: TCP
           ToPort: 80
