@@ -7,10 +7,10 @@ Parameters:
     Description: VPC to operate 
     Properties: 
       CidrBlock: 10.0.0.0/16
-    #  InstanceTenancy: default
-    #  Tags:
-    #    - Key: ServiceTier
-    #      Value: NonProduction
+      InstanceTenancy: default
+      Tags:
+        - Key: ServiceTier
+          Value: NonProduction
 
   InstanceType:
     Description: WebServer EC2 instance type (has default, AllowedValues)
@@ -42,7 +42,7 @@ Resources:
   SSHSecurityGroup:
     Properties:
       GroupDescription: "Enable Security for Server"
-      VpcId: !Ref CoreVPC
+      #VpcId: !Ref CoreVPC
       SecurityGroupIngress:
         -
           CidrIp: 0.0.0.0/0
@@ -54,7 +54,7 @@ Resources:
   ServerSecurityGroup: 
     Properties: 
       GroupDescription: "Enable Security for Server"
-      VpcId: !Ref CoreVPC
+      #VpcId: !Ref CoreVPC
       SecurityGroupIngress: 
         - 
           CidrIp: 0.0.0.0/0
