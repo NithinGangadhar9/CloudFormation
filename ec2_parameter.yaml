@@ -17,11 +17,10 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /dev/ec2/availabilityzone
 
-
 Resources:
-  MyInstance: 
+  MyInstance:
     Type: "AWS::EC2::Instance"
-    Properties: 
+    Properties:
       AvailabilityZone: !Ref AvailabilityZone
       ImageId: !Ref ImageId
       InstanceType: !Ref InstanceType
@@ -48,7 +47,8 @@ Resources:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
       GroupDescription: "Enable Security for Server"
-      #VpcId: !Ref CoreVPC
+      VpcId: 
+          Ref: CoreVPC
       SecurityGroupIngress:
         -
           CidrIp: 10.0.1.0/32
@@ -60,7 +60,8 @@ Resources:
     Type: "AWS::EC2::SecurityGroup"
     Properties: 
       GroupDescription: "Enable Security for Server"
-      #VpcId: !Ref CoreVPC
+      VpcId: 
+          Ref: CoreVPC
       SecurityGroupIngress: 
         - 
           CidrIp: 10.0.2.0/32
